@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - CampusConnect</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Student Dashboard</h1>
+    </header>
+    <main>
+        <p>Welcome back! Here’s what’s happening:</p>
+        <ul>
+            {% for event in api_data %}
+                <li>
+                <strong>{{ event.title }}</strong>
+                {% if event.start_date and event.start_time and event.end_date and event.end_time %}
+                    — {{ event.start_date }} at {{ event.start_time }} 
+                    to {{ event.end_date }} at {{ event.end_time }}
+        
+                {% elif event.start_date and event.start_time and event.end_time %}
+                    — {{ event.start_date }} from {{ event.start_time }} to {{ event.end_time }}
+        
+                {% elif event.start_date %}
+                    — {{ event.start_date }}
+                    {% if event.start_time %} at {{ event.start_time }}{% endif %}
+                {% endif %}
+                
+                {% if event.location %}
+                    @ {{ event.location }}
+                    {% if event.address %}
+                        ({{ event.address }})
+                    {% endif %}
+                {% endif %}
+                
+                {% if event.description %}
+                    <br><em>{{ event.description }}</em>
+                {% endif %}
+
+                {% if event.url %}
+                    <br>More Info: <a href="{{ event.url }}">{{ event.url }}</a>
+                {% endif %}
+            </li>
+            {% endfor %}
+            <li><a href="/events">View Events</a></li>
+        </ul>
+    </main>
+</body>
+</html>

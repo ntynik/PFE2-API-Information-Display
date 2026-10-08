@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Events - CampusConnect</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Campus Events</h1>
+    </header>
+    <main>
+        <h2>Sample Internal Events</h2>
+        <ul>
+            {% for title, location, date in internal_events %}
+                <li><strong>{{ title }}</strong> — {{ date }} @ {{ location }}<br>
+            {% endfor %}
+        </ul>
+        <!-- Added in for your scraped data -->
+        <h2>Scraped Campus Events</h2>
+        <ul>
+            {% for event in external_events %}
+                <li>
+                <strong>{{ event.title }}</strong>
+                {% if event.start_date and event.start_time and event.end_date and event.end_time %}
+                    — {{ event.start_date }} at {{ event.start_time }} 
+                    to {{ event.end_date }} at {{ event.end_time }}
+        
+                {% elif event.start_date and event.start_time and event.end_time %}
+                    — {{ event.start_date }} from {{ event.start_time }} to {{ event.end_time }}
+        
+                {% elif event.start_date %}
+                    — {{ event.start_date }}
+                    {% if event.start_time %} at {{ event.start_time }}{% endif %}
+                {% endif %}
+                
+                {% if event.location %}
+                    @ {{ event.location }}
+                    {% if event.address %}
+                        ({{ event.address }})
+                    {% endif %}
+                {% endif %}
+                
+                {% if event.description %}
+                    <br><em>{{ event.description }}</em>
+                {% endif %}
+
+                {% if event.url %}
+                    <br>More Info: <a href="{{ event.url }}">{{ event.url }}</a>
+                {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        <!-- End of additions -->
+        <a href="/api">Back to API Data</a>
+    </main>
+</body>
+</html>
