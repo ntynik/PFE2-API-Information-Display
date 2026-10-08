@@ -30,9 +30,9 @@ python app.py
 9. Open localhost http://127.0.0.1:5000/
 
 ## Preview
-![Campus Events](screenshots/CampusEvents.png)
+![Campus Events](Screenshots/CampusEvents.png)
 
-![Ticketmaster Events](screenshots/TicketmasterEvents.png)
+![Ticketmaster Events](Screenshots/TicketmasterEvents.png)
 
 ## What I Learned
 - Working with external APIs
