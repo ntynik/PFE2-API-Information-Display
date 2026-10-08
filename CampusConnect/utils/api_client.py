@@ -53,7 +53,7 @@ class APIClient:
         """
         self.url = url
         self.headers = headers
-        self.api_key = "2yQrcsBgSkl6qMQHQ4o8buDi13KL0CJz"
+        self.api_key = "TICKETMASTER_API"
 
     # Converts time from 24 hour format to 12 hour format
     def convert_time(self, time):
